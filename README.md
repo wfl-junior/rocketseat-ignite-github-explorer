@@ -1,1 +1,1 @@
-# Rocketseat Ignite
+# Rocketseat Ignite GitHub Explorer
