@@ -2,13 +2,20 @@ import { useEffect, useState } from "react";
 import "../styles/repositories.scss";
 import { RepositoryItem } from "./RepositoryItem";
 
-export function RepositoryList() {
-  const [repositories, setRepositories] = useState([]);
+export interface Repository {
+  id: number;
+  name: string;
+  description: string;
+  html_url: string;
+}
+
+export const RepositoryList: React.FC = () => {
+  const [repositories, setRepositories] = useState<Repository[]>([]);
 
   useEffect(() => {
     fetch("https://api.github.com/orgs/rocketseat/repos")
       .then(response => response.json())
-      .then(data => setRepositories(data));
+      .then((data: Repository[]) => setRepositories(data));
   }, []);
 
   return (
@@ -22,4 +29,4 @@ export function RepositoryList() {
       </ul>
     </section>
   );
-}
+};
